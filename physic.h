@@ -2,6 +2,7 @@ typedef struct{
     hbox pos;
     double speed_x;
     double speed_y;
+    int health;
 }character;
 
 typedef struct {
