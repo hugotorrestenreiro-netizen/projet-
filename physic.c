@@ -10,6 +10,8 @@ character *create_char (double spawn_x,double spawn_y){
     chara->pos.pos_y = spawn_y;
     chara->pos.haut = CHAR_HEIGHT;
     chara->pos.large = CHAR_WIDTH;
+    chara->speed_y = 10.0;
+    chara->speed_x = 0.0;
     return chara;
 }
 
@@ -21,6 +23,7 @@ void chara_move (character *chara){
     if (state[SDL_SCANCODE_RIGHT]) {
         if (state[SDL_SCANCODE_LEFT]){
             chara->speed_x = 0.0;
+            chara->
         }
         else{
             chara->speed_x = 5.0;
@@ -37,14 +40,17 @@ void chara_move (character *chara){
             chara->speed_y = -10.0;
         }
     }
+    if (chara_in_ground){
+        chara-speed_y = -10.0;
+    }
 }
 
-bool chara_ground(character *chara, room *salle){
+bool chara_in_ground(character *chara, room *salle){
     if(chara == NULL || room == NULL){
         return false;
     }
-    double foot_chara = chara->pos.pos.y - chara->pos.haut
-    if(foot_chara <= salle->floor_level){
+    double foot_chara = chara->pos.pos.y + chara->pos.haut
+    if(foot_chara > salle->floor_level){
         return true;
     }
     else{
