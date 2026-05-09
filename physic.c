@@ -7,4 +7,5 @@ character *create_char (double spawn_x,double spawn_y){
     chara->pos.pos_y = spawn_y;
     chara->pos.haut = CHAR_HEIGHT;
     chara->pos.large = CHAR_WIDTH;
+    return chara;
 }
