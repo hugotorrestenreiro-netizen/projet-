@@ -39,4 +39,15 @@ void chara_move (character *chara){
     }
 }
 
-bool chara_
+bool chara_ground(character *chara, room *salle){
+    if(chara == NULL || room == NULL){
+        return false;
+    }
+    double foot_chara = chara->pos.pos.y - chara->pos.haut
+    if(foot_chara <= salle->floor_level){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
