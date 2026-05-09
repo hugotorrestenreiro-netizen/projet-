@@ -1,5 +1,7 @@
 typedef struct{
-    hbox pos
+    hbox pos;
+    double speed_x;
+    double speed_y;
 }character;
 
 typedef struct {
@@ -9,4 +11,8 @@ typedef struct {
     double large;
 }hbox;
 
-#define 
+#define CHAR_HEIGHT 100
+
+#define CHAR_WIDTH 50
+
+
