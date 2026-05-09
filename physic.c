@@ -15,6 +15,9 @@ character *create_char (double spawn_x,double spawn_y){
 
 void chara_move (character *chara){
     const Uint8 *state = SDL_GetKeyboardState(NULL);
+    if (!state[SDL_SCANCODE_LEFT] && !state[SDL_SCANCODE_RIGHT] && !state[SDL_SCANCODE_UP]&& !state[SDL_SCANCODE_DOWN]){
+        chara->speed_x = 0.0;
+    }
     if (state[SDL_SCANCODE_RIGHT]) {
         if (state[SDL_SCANCODE_LEFT]){
             chara->speed_x = 0.0;
@@ -28,7 +31,7 @@ void chara_move (character *chara){
     }
     if (state[SDL_SCANCODE_UP]){
         if(state[SDL_SCANCODE_DOWN]){
-            chara->speed_x = 0.0;
+            chara->speed_y = 0.0;
         }
         else{
             chara->speed_y = -10.0;
