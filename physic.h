@@ -12,11 +12,11 @@ typedef struct{
     int health;
 }character;
 
-#define CHAR_HEIGHT 100;
+#define CHAR_HEIGHT 100
 
-#define CHAR_WIDTH 50;
+#define CHAR_WIDTH 50
 
-#define STANDARD_FLOOR_HEIGHT 500;
+#define STANDARD_FLOOR_HEIGHT 500
 
 
 
