@@ -1,7 +1,7 @@
 character *create_char (double spawn_x,double spawn_y){
     character *chara = calloc (1, sizeof(character))
     if (chara == NULL){
-        return;
+        return NULL;
     }
     chara->pos.pos_x = spawn_x;
     chara->pos.pos_y = spawn_y;
