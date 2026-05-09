@@ -1,1 +1,1 @@
-bool collisions(hbox obj, )
+void create_char (game g, )
