@@ -31,7 +31,7 @@ void chara_move (character *chara){
             chara->speed_x = 0.0;
         }
         else{
-            chara->speed_y = 10.0;
+            chara->speed_y = -10.0;
         }
     }
 }
