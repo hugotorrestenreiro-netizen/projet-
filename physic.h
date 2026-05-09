@@ -11,8 +11,10 @@ typedef struct {
     double large;
 }hbox;
 
-#define CHAR_HEIGHT 100
+#define CHAR_HEIGHT 100;
 
-#define CHAR_WIDTH 50
+#define CHAR_WIDTH 50;
+
+#define STANDARD_FLOOR_HEIGHT 500;
 
 
