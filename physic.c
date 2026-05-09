@@ -6,7 +6,7 @@ character *create_char (double spawn_x,double spawn_y){
     if (chara == NULL){
         return NULL;
     }
-    chara->pos.pos_x = spawn_x;
+    chara->pos.pos_x = spawn_x;                                   //Initialisation du personnage (au lancement du jeu)
     chara->pos.pos_y = spawn_y;
     chara->pos.haut = CHAR_HEIGHT;
     chara->pos.large = CHAR_WIDTH;
@@ -26,7 +26,7 @@ void chara_move (character *chara){
             chara->speed_x = 5.0;
         }
     }
-    else if (state[SDL_SCANCODE_LEFT]){
+    else if (state[SDL_SCANCODE_LEFT]){                 //Déplacement selon la direction
         chara->speed_x = -5.0;
     }
     if (state[SDL_SCANCODE_UP]){
@@ -38,3 +38,5 @@ void chara_move (character *chara){
         }
     }
 }
+
+bool chara_
