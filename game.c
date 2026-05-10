@@ -1,3 +1,6 @@
+#include <physic.h>
+
+
 room *create_room(int room_id){
     room *salle = calloc(1,sizeof(room));
     switch (room_id){
