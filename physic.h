@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 typedef struct {
     double pos_x;
     double pos_y;
@@ -27,6 +29,16 @@ typedef struct{
 #define CHAR_WIDTH 50.0
 
 #define STANDARD_FLOOR_HEIGHT 500.0
+
+
+character *create_char (double spawn_x,double spawn_y);
+
+void chara_move (character *chara);
+
+bool chara_in_ground(character *chara, room *salle);
+
+bool collision(hbox hbox1, hbox hbox2);
+
 
 
 

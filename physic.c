@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
+#include "physic.h"
 
 character *create_char (double spawn_x,double spawn_y){
     character *chara = calloc (1, sizeof(character))
@@ -46,11 +47,26 @@ void chara_move (character *chara){
 }
 
 bool chara_in_ground(character *chara, room *salle){
-    if(chara == NULL || room == NULL){
+    if(chara == NULL || salle == NULL){
         return false;
     }
     double foot_chara = chara->pos.pos.y + chara->pos.haut
-    if(foot_chara > salle->floor_level){
+    if(foot_chara >= salle->floor_level){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool collision(hbox hbox1, hbox hbox2){
+    bool collision_x = (hbox1.pos_x < hbox2.pos_x + hbox2.large) && 
+                       (hbox1.pos_x + hbox1.large > hbox2.pos_x);
+
+    bool collision_y = (hbox1.pos_y < hbox2.pos_y + hbox2.haut) && 
+                       (hbox1.pos_y + hbox1.haut > hbox2.pos_y);
+
+    if(collision_x && collision_y){
         return true;
     }
     else{
