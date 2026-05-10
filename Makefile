@@ -4,7 +4,7 @@ LDFLAGS = -lSDL2
 
 EXEC = mon_jeu
 
-SRC = game.c physic.c
+SRC = game.c physic.c renderer.c
 OBJ = $(SRC:.c=.o)
 
 all: $(EXEC)
