@@ -16,14 +16,15 @@ character *create_char (double spawn_x,double spawn_y){
     return chara;
 }
 
-void chara_move (character *chara){
+void chara_move (character *chara, room *salle){
     const Uint8 *state = SDL_GetKeyboardState(NULL);
+
     if (!state[SDL_SCANCODE_LEFT] && !state[SDL_SCANCODE_RIGHT] && !state[SDL_SCANCODE_UP]&& !state[SDL_SCANCODE_DOWN]){
         chara->speed_x = 0.0;
     }
     if (state[SDL_SCANCODE_RIGHT]) {
         if (state[SDL_SCANCODE_LEFT]){
-            chara->speed_x = 0.0;
+                chara->speed_x = 0.0;
         }
         else{
             chara->speed_x = 5.0;
@@ -32,16 +33,13 @@ void chara_move (character *chara){
     else if (state[SDL_SCANCODE_LEFT]){                 //Déplacement selon la direction
         chara->speed_x = -5.0;
     }
-    if (state[SDL_SCANCODE_UP]){
+    if (state[SDL_SCANCODE_UP] && chara_in_ground(chara,salle)){
         if(state[SDL_SCANCODE_DOWN]){
             chara->speed_y = 0.0;
         }
         else {
             chara->speed_y = -10.0;
         }
-    }
-    if (chara_in_ground){
-        chara->speed_y = -10.0;
     }
 }
 

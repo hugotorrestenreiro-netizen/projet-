@@ -43,7 +43,7 @@ int main(int argc, char* argv[]){
                 running = false;
             }
         }
-        chara_move(chara);
+        chara_move(chara,salle);
         chara->speed_y += 0.5;
         chara->pos.pos_x += chara->speed_x;
         chara->pos.pos_y += chara->speed_y;

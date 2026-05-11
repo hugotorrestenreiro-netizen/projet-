@@ -36,7 +36,7 @@ typedef struct{
 
 character *create_char (double spawn_x,double spawn_y);
 
-void chara_move (character *chara);
+void chara_move (character *chara, room *salle);
 
 bool chara_in_ground(character *chara, room *salle);
 

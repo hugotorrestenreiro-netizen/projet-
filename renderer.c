@@ -1,5 +1,6 @@
 #include "renderer.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 GameView* init_view(int width, int height) {
     GameView *view = malloc(sizeof(GameView));
@@ -9,25 +10,34 @@ GameView* init_view(int width, int height) {
         return NULL;
     }
 
-    view->window = SDL_CreateWindow("Mon Jeu", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
-    view->renderer = SDL_CreateRenderer(view->window, -1, SDL_RENDERER_ACCELERATED);
+    view->window = SDL_CreateWindow("Mon Projet Inshallah", 
+                                    SDL_WINDOWPOS_CENTERED, 
+                                    SDL_WINDOWPOS_CENTERED, 
+                                    width, height, 
+                                    SDL_WINDOW_RESIZABLE); // Fenêtre étirable !
 
-    if (!view->window || !view->renderer) {
-        printf("Erreur Fenetre/Renderer: %s\n", SDL_GetError());
-        return NULL;
-    }
+    view->renderer = SDL_CreateRenderer(view->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    SDL_RenderSetLogicalSize(view->renderer, 800, 600);
 
     return view;
 }
 
 void draw_game(GameView *view, character *chara, room *salle) {
 
-    SDL_SetRenderDrawColor(view->renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(view->renderer, 15, 15, 35, 255);
     SDL_RenderClear(view->renderer);
 
-    SDL_Rect floor_rect = {0, (int)salle->floor_level, 800, 50}; 
-    SDL_SetRenderDrawColor(view->renderer, 34, 139, 34, 255); // Vert forêt
-    SDL_RenderFillRect(view->renderer, &floor_rect);
+
+
+    SDL_Rect earth = {0, (int)salle->floor_level, 800, 600};
+    SDL_SetRenderDrawColor(view->renderer, 70, 40, 15, 255);
+    SDL_RenderFillRect(view->renderer, &earth);
+
+
+    SDL_Rect grass = {0, (int)salle->floor_level, 800, 10};
+    SDL_SetRenderDrawColor(view->renderer, 30, 180, 30, 255);
+    SDL_RenderFillRect(view->renderer, &grass);
+
 
     SDL_Rect char_rect = {
         (int)chara->pos.pos_x, 
@@ -35,16 +45,24 @@ void draw_game(GameView *view, character *chara, room *salle) {
         (int)chara->pos.large, 
         (int)chara->pos.haut
     };
-    SDL_SetRenderDrawColor(view->renderer, 220, 20, 60, 255); // Rouge vif
+    
+ 
+    SDL_SetRenderDrawColor(view->renderer, 200, 30, 30, 255);
     SDL_RenderFillRect(view->renderer, &char_rect);
+    
+ 
+    SDL_SetRenderDrawColor(view->renderer, 255, 255, 255, 255); // Blanc
+    SDL_RenderDrawRect(view->renderer, &char_rect);
 
 
     SDL_RenderPresent(view->renderer);
 }
 
 void close_view(GameView *view) {
-    SDL_DestroyRenderer(view->renderer);
-    SDL_DestroyWindow(view->window);
-    SDL_Quit();
-    free(view);
+    if (view) {
+        SDL_DestroyRenderer(view->renderer);
+        SDL_DestroyWindow(view->window);
+        SDL_Quit();
+        free(view);
+    }
 }
