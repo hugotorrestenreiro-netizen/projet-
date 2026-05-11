@@ -27,18 +27,18 @@ void chara_move (character *chara, room *salle){
                 chara->speed_x = 0.0;
         }
         else{
-            chara->speed_x = 5.0;
+            chara->speed_x = 300.0;
         }
     }
     else if (state[SDL_SCANCODE_LEFT]){                 //Déplacement selon la direction
-        chara->speed_x = -5.0;
+        chara->speed_x = -300.0;
     }
     if (state[SDL_SCANCODE_UP] && chara_in_ground(chara,salle)){
         if(state[SDL_SCANCODE_DOWN]){
             chara->speed_y = 0.0;
         }
         else {
-            chara->speed_y = -10.0;
+            chara->speed_y = -300.0;
         }
     }
 }
@@ -69,4 +69,16 @@ bool collision(hbox hbox1, hbox hbox2){
     else{
         return false;
     }
+}
+
+void update_physics(character *chara, double dt, room *salle){
+    chara->speed_y += 600.0 * dt;
+    chara->pos.pos_x = chara->pos.pos_x + chara->speed_x * dt;
+    chara->pos.pos_y = chara->pos.pos_y + chara->speed_y * dt;
+    if(chara_in_ground(chara, salle)){
+            if (chara->speed_y >= 0.0){
+                chara->speed_y = 0.0;
+                chara->pos.pos_y = salle->floor_level - chara->pos.haut;
+            }
+        }
 }

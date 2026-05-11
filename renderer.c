@@ -10,7 +10,7 @@ GameView* init_view(int width, int height) {
         return NULL;
     }
 
-    view->window = SDL_CreateWindow("Mon Projet Inshallah", 
+    view->window = SDL_CreateWindow("Projet", 
                                     SDL_WINDOWPOS_CENTERED, 
                                     SDL_WINDOWPOS_CENTERED, 
                                     width, height, 

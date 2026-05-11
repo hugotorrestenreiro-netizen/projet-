@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g 
 LDFLAGS = -lSDL2
 
-EXEC = mon_jeu
+EXEC = jeu
 
 SRC = game.c physic.c renderer.c
 OBJ = $(SRC:.c=.o)

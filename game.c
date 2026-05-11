@@ -35,6 +35,8 @@ int main(int argc, char* argv[]){
     GameView *view = init_view(800, 600);
     room *salle = create_room(1);
     character *chara = create_char (700.0, 700.0);
+    Uint64 temps_precedent = SDL_GetPerformanceCounter();
+    double dt = 0;
     bool running = true;
     SDL_Event event;
     while(running){
@@ -43,18 +45,13 @@ int main(int argc, char* argv[]){
                 running = false;
             }
         }
+        Uint64 maintenant = SDL_GetPerformanceCounter();
+        dt = (double)(maintenant - temps_precedent)/SDL_GetPerformanceFrequency();
+        temps_precedent = maintenant;
         chara_move(chara,salle);
-        chara->speed_y += 0.5;
-        chara->pos.pos_x += chara->speed_x;
-        chara->pos.pos_y += chara->speed_y;
-        if(chara_in_ground(chara, salle)){
-            if (chara->speed_y >= 0.0){
-                chara->speed_y = 0.0;
-                chara->pos.pos_y = salle->floor_level - chara->pos.haut;
-            }
-        }
+        update_physics(chara, dt, salle);
         draw_game(view, chara, salle);
-        SDL_Delay(16);
+        SDL_Delay(dt);
     }
     free(chara);
     free(salle);
