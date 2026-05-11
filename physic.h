@@ -1,3 +1,6 @@
+#ifndef PHYSIC_H
+#define PHYSIC_H
+
 #include <stdbool.h>
 
 typedef struct {
@@ -39,7 +42,7 @@ bool chara_in_ground(character *chara, room *salle);
 
 bool collision(hbox hbox1, hbox hbox2);
 
-
+#endif
 
 
 

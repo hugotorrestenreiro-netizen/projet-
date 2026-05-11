@@ -3,7 +3,7 @@
 #include "physic.h"
 
 character *create_char (double spawn_x,double spawn_y){
-    character *chara = calloc (1, sizeof(character))
+    character *chara = calloc (1, sizeof(character));
     if (chara == NULL){
         return NULL;
     }
@@ -24,7 +24,6 @@ void chara_move (character *chara){
     if (state[SDL_SCANCODE_RIGHT]) {
         if (state[SDL_SCANCODE_LEFT]){
             chara->speed_x = 0.0;
-            chara->
         }
         else{
             chara->speed_x = 5.0;
@@ -37,12 +36,12 @@ void chara_move (character *chara){
         if(state[SDL_SCANCODE_DOWN]){
             chara->speed_y = 0.0;
         }
-        else{
+        else {
             chara->speed_y = -10.0;
         }
     }
     if (chara_in_ground){
-        chara-speed_y = -10.0;
+        chara->speed_y = -10.0;
     }
 }
 
@@ -50,7 +49,7 @@ bool chara_in_ground(character *chara, room *salle){
     if(chara == NULL || salle == NULL){
         return false;
     }
-    double foot_chara = chara->pos.pos.y + chara->pos.haut
+    double foot_chara = chara->pos.pos_y + chara->pos.haut;
     if(foot_chara >= salle->floor_level){
         return true;
     }

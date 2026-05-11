@@ -1,6 +1,8 @@
 #include "physic.h"
 #include <stdbool.h>
-
+#include <stdlib.h>
+#include <SDL2/SDL.h>
+#include "renderer.h"
 
 room *create_room(int room_id){
     room *salle = calloc(1,sizeof(room));
@@ -30,6 +32,7 @@ room *create_room(int room_id){
 }
 
 int main(int argc, char* argv[]){
+    GameView *view = init_view(800, 600);
     room *salle = create_room(1);
     character *chara = create_char (700.0, 700.0);
     bool running = true;
@@ -41,18 +44,21 @@ int main(int argc, char* argv[]){
             }
         }
         chara_move(chara);
-        chara->hbox.speedy += 0.5;
-        chara->hbox.pos_x += chara->hbox.speed_x;
-        chara->hbox.pos_y += chara->hbox.speed_y;
+        chara->speed_y += 0.5;
+        chara->pos.pos_x += chara->speed_x;
+        chara->pos.pos_y += chara->speed_y;
         if(chara_in_ground(chara, salle)){
-            if (chara->hbox.speed_y >= 0.0){
-            chara->hbox.pos_y = salle->hbox.pos_y - chara->hbox.haut;
+            if (chara->speed_y >= 0.0){
+                chara->speed_y = 0.0;
+                chara->pos.pos_y = salle->floor_level - chara->pos.haut;
             }
         }
+        draw_game(view, chara, salle);
         SDL_Delay(16);
     }
     free(chara);
     free(salle);
+    close_view(view);
     return 0;
 }
 
