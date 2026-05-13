@@ -14,7 +14,7 @@ GameView* init_view(int width, int height) {
                                     SDL_WINDOWPOS_CENTERED, 
                                     SDL_WINDOWPOS_CENTERED, 
                                     width, height, 
-                                    SDL_WINDOW_RESIZABLE); // Fenêtre étirable !
+                                    SDL_WINDOW_RESIZABLE);
 
     view->renderer = SDL_CreateRenderer(view->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_RenderSetLogicalSize(view->renderer, 800, 600);
